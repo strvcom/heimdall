@@ -1,0 +1,25 @@
+{
+  "lerna": "3.13.0",
+  "version": "independent",
+  "loglevel": "success",
+  "packages": [
+    "packages/*"
+  ],
+  "ignoreChanges": [
+    "test/**",
+    "**/*.test.mjs",
+    "package-lock.json",
+    "**/package-lock.json"
+  ],
+  "command": {
+    "version": {
+      "allowBranch": [
+        "release/*"
+      ],
+      "conventionalCommits": true,
+      "message": "chore: release",
+      "signGitCommit": true,
+      "push": false
+    }
+  }
+}

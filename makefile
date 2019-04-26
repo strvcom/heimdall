@@ -14,10 +14,11 @@ MOCHA_FLAGS :=
 BABEL_FLAGS :=
 ESLINT_FLAGS :=
 NPM_FLAGS :=
+LERNA_FLAGS :=
 
 SRCFILES := $(patsubst %.mjs, %.js, $(shell utils/make/projectfiles.sh mjs))
 GITFILES := $(patsubst utils/githooks/%, .git/hooks/%, $(wildcard utils/githooks/*))
-TSTFILES := "**/*.test.js"
+TSTFILES := "packages/**/*.test.js"
 
 # Do this when make is invoked without targets
 all: precompile $(GITFILES)
@@ -26,7 +27,7 @@ all: precompile $(GITFILES)
 # GENERIC TARGETS
 
 node_modules: package.json
-	npm $(NPM_I) $(NPM_FLAGS) && touch node_modules
+	npm $(NPM_I) $(NPM_FLAGS) && lerna bootstrap $(LERNA_FLAGS) && touch node_modules
 
 # Default compilation target for all source files
 %.js: %.mjs node_modules babel.config.js
@@ -64,8 +65,11 @@ inspect: force compile
 watch: force compile
 	mocha $(MOCHA_FLAGS) --watch $(TSTFILES)
 
+version:
+	lerna version $(LERNA_FLAGS)
+
 unlock: pristine
-	rm -f package-lock.json
+	rm -f package-lock.json packages/*/package-lock.json
 	touch package.json
 
 clean:
@@ -76,7 +80,7 @@ distclean: clean
 	rm -f $(shell ./utils/make/projectfiles.sh js)
 
 pristine: distclean
-	rm -rf node_modules
+	rm -rf node_modules packages/*/node_modules
 
 .PHONY: force
 

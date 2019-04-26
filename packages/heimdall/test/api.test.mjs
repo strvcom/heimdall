@@ -1,6 +1,6 @@
 import * as expect from 'expect'
 import * as sinon from 'sinon'
-import { heimdall } from '../..'
+import { heimdall } from '..'
 
 /**
  * @typedef   DelegateStub

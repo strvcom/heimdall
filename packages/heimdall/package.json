@@ -1,0 +1,25 @@
+{
+  "name": "@strv/heimdall",
+  "description": "A simple process signal manager",
+  "version": "0.1.0",
+  "author": "Robert Rossmann <robert.rossmann@strv.com>",
+  "bugs": "https://github.com/strvcom/heimdall/issues",
+  "contributors": [],
+  "dependencies": {},
+  "devDependencies": {
+    "@types/sinon": "^7.0.11",
+    "expect": "^24.7.1",
+    "sinon": "^7.3.2"
+  },
+  "engines": {
+    "node": "^10 || ^11 || ^12"
+  },
+  "homepage": "https://github.com/strvcom/heimdall/tree/master/packages/heimdall",
+  "keywords": [],
+  "license": "BSD-3-Clause",
+  "main": "src",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:strvcom/heimdall.git"
+  }
+}
