@@ -70,7 +70,7 @@ unlock: pristine
 
 clean:
 	rm -rf {.nyc_output,coverage,docs,.eslintcache}
-	find . -not -path '*/node_modules/*' --name '*.log' -print -delete
+	find . -not -path '*/node_modules/*' -name '*.log' -print -delete
 
 distclean: clean
 	rm -f $(shell ./utils/make/projectfiles.sh js)
