@@ -53,6 +53,6 @@
   "main": "src",
   "repository": {
     "type": "git",
-    "url": "git://github.com/strvcom/heimdall.git"
+    "url": "git@github.com:strvcom/heimdall.git"
   }
 }
