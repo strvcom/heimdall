@@ -1,0 +1,24 @@
+---
+dist: xenial
+language: node_js
+node_js:
+  - '10'
+  - '12'
+
+cache:
+  directories:
+    - node_modules
+
+before_install:
+  - touch package.json
+
+install:
+  - make install
+  - make precompile
+
+script:
+  - travis/script.sh
+
+env:
+  global:
+    - MAKEFLAGS=-j2
