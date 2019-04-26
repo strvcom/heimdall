@@ -7,7 +7,7 @@ node_js:
 
 cache:
   directories:
-    - node_modules
+    - /home/travis/.npm
 
 before_install:
   - touch package.json
