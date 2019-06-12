@@ -63,6 +63,6 @@ heimdall({
 See the [LICENSE](LICENSE) file for information.
 
 [strv-home]: https://www.strv.com
-[travis-badge]: https://img.shields.io/travis/strvcom/heimdall.svg?style=flat-square
-[travis-url]: https://travis-ci.org/strvcom/heimdall
+[travis-badge]: https://img.shields.io/travis/com/strvcom/heimdall.svg?style=flat-square
+[travis-url]: https://travis-ci.com/strvcom/heimdall
 [make-badge]: https://img.shields.io/badge/Built%20with-GNU%20Make-brightgreen.svg?style=flat-square
