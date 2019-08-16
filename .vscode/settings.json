@@ -1,0 +1,17 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "{packages,test}/**/*.js": true,
+    ".eslintcache": true,
+    ".nyc_output": true,
+  },
+  "javascript.validate.enable": true,
+  "eslint.autoFixOnSave": true,
+  "eslint.provideLintTask": true,
+  "editor.tabSize": 2,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "triggerTaskOnSave.selectedTask": "babel:compile",
+}

@@ -1,0 +1,15 @@
+{
+  "include": [
+    "**/*.mjs"
+  ],
+  "compilerOptions": {
+    "target": "es2019",
+    "moduleResolution": "node"
+  },
+  "typeAcquisition": {
+    "enable": true,
+    "include": [
+      "mocha"
+    ]
+  }
+}
