@@ -45,7 +45,7 @@ function heimdall(delegate) {
     process.removeListener('SIGINT', forcequit)
     process.removeListener('SIGTERM', forcequit)
 
-    if (delegate::respondsTo('didReceiveForcequit')) {
+    if (respondsTo(delegate, 'didReceiveForcequit')) {
       delegate.didReceiveForcequit()
     }
 
@@ -86,11 +86,12 @@ function fatal(err) {
  * Check if a given this context has a function fn defined on itself
  *
  * @private
- * @param     {string}    fn    Function name to check
+ * @param     {Delegate}  delegate  Delegate to check
+ * @param     {string}    fn        Function name to check
  * @return    {boolean}
  */
-function respondsTo(fn) {
-  return typeof this[fn] === 'function'
+function respondsTo(delegate, fn) {
+  return typeof delegate[fn] === 'function'
 }
 
 export {

@@ -11,7 +11,6 @@ module.exports = {
       noInterop: true,
     }],
     '@babel/proposal-class-properties',
-    '@babel/proposal-function-bind',
   ],
   ignore: [
     '**/node_modules',

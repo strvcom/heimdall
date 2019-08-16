@@ -5,9 +5,9 @@ import { heimdall } from '..'
 /**
  * @typedef   DelegateStub
  *
- * @property  {sinon.SinonFake}   execute
- * @property  {sinon.SinonFake}   exit
- * @property  {sinon.SinonFake}   didReceiveForcequit
+ * @property  {sinon.SinonStub}   execute
+ * @property  {sinon.SinonStub}   exit
+ * @property  {sinon.SinonStub}   didReceiveForcequit
  */
 
 describe('heimdall', () => {
