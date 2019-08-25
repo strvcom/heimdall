@@ -8,7 +8,7 @@
   },
   "javascript.validate.enable": true,
   "eslint.autoFixOnSave": true,
-  "eslint.provideLintTask": true,
+  "eslint.lintTask.enable": true,
   "editor.tabSize": 2,
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
