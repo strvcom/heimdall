@@ -35,5 +35,8 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:strvcom/heimdall.git"
+  },
+  "scripts": {
+    "install": "touch node_modules && make"
   }
 }
