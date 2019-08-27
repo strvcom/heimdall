@@ -16,9 +16,10 @@ ESLINT_FLAGS :=
 NPM_FLAGS :=
 LERNA_FLAGS :=
 
-SRCFILES := $(patsubst %.mjs, %.js, $(shell utils/make/projectfiles.sh mjs))
-GITFILES := $(patsubst utils/githooks/%, .git/hooks/%, $(wildcard utils/githooks/*))
-TSTFILES := "packages/**/*.test.js"
+SRCFILES = $(shell utils/make/projectfiles.sh mjs)
+DSTFILES = $(patsubst %.mjs, %.js, $(SRCFILES))
+GITFILES = $(patsubst utils/githooks/%, .git/hooks/%, $(wildcard utils/githooks/*))
+TSTFILES = "packages/**/*.test.js"
 
 # Do this when make is invoked without targets
 all: precompile $(GITFILES)
@@ -37,13 +38,13 @@ node_modules: package.json
 .git/hooks/%: utils/githooks/%
 	cp $< $@
 
-coverage/lcov.info: $(SRCFILES)
+coverage/lcov.info: $(DSTFILES)
 	nyc mocha $(MOCHA_FLAGS) $(TSTFILES)
 
 
 # TASK DEFINITIONS
 
-compile: $(SRCFILES)
+compile: $(DSTFILES)
 
 coverage: coverage/lcov.info
 
