@@ -87,6 +87,21 @@ describe('heimdall', () => {
 
       expect(err.message).not.toMatch(/delegate.didReceiveForcequit is not a function/gu)
     })
+
+    it('removes all signal & beforeExit listeners when receiving a signal', () => {
+      delegate.exit.returns(new Promise(() => {}))
+      heimdall(delegate)
+
+      const onsignal = process.once.getCalls().find(call => call.args[0] === 'SIGINT').args[1]
+      onsignal()
+
+      const removed = process.removeListener.getCalls().map(call => call.args[0])
+      expect(removed).toEqual(expect.arrayContaining([
+        'SIGINT',
+        'SIGTERM',
+        'beforeExit',
+      ]))
+    })
   })
 
 
@@ -99,6 +114,21 @@ describe('heimdall', () => {
       onexit()
 
       expect(delegate.exit.callCount).toBe(1)
+    })
+
+    it('removes all signal & beforeExit listeners when exiting', () => {
+      delegate.exit.returns(new Promise(() => {}))
+      heimdall(delegate)
+
+      const onexit = process.once.getCalls().find(call => call.args[0] === 'beforeExit').args[1]
+      onexit()
+
+      const removed = process.removeListener.getCalls().map(call => call.args[0])
+      expect(removed).toEqual(expect.arrayContaining([
+        'SIGINT',
+        'SIGTERM',
+        'beforeExit',
+      ]))
     })
   })
 

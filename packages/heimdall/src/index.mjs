@@ -17,6 +17,7 @@ function heimdall(delegate) {
   async function onexit() {
     process.removeListener('SIGINT', onsignal)
     process.removeListener('SIGTERM', onsignal)
+    process.removeListener('beforeExit', onexit)
 
     try {
       await delegate.exit()
