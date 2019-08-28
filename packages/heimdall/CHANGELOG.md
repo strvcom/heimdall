@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/strvcom/heimdall/compare/@strv/heimdall@1.0.1...@strv/heimdall@1.0.2) (2019-08-28)
+
+
+### Bug Fixes
+
+* add TypeScript typings 🎉 ([21f01b0](https://github.com/strvcom/heimdall/commit/21f01b0))
+* do not call delegate.exit() more than once ([ba6ae58](https://github.com/strvcom/heimdall/commit/ba6ae58))
+
+
+
+
+
 ## [1.0.1](https://github.com/strvcom/heimdall/compare/@strv/heimdall@1.0.0...@strv/heimdall@1.0.1) (2019-06-12)
 
 
