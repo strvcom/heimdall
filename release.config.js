@@ -10,10 +10,11 @@ module.exports = {
     '@semantic-release/changelog',
     ['@semantic-release/npm', {
       npmPublish: true,
+      tarballDir: '.',
     }],
     '@semantic-release/git',
     ['@semantic-release/github', {
-      assets: '*.tgz',
+      assets: [{ path: '*.tgz', label: '@strv/heimdall.tgz' }],
     }],
   ],
 }
