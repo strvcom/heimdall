@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/strvcom/heimdall/compare/1.0.2...1.1.0) (2019-11-01)
+
+
+### Features
+
+* remove Lerna, use Github Actions 🚀 ([cfa9895](https://github.com/strvcom/heimdall/commit/cfa9895a95ddac9e90f6c5e6ba9ae5631b75357c))
+
 ## [1.0.2](https://github.com/strvcom/heimdall/compare/@strv/heimdall@1.0.1...@strv/heimdall@1.0.2) (2019-08-28)
 
 

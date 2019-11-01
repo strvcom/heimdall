@@ -1,7 +1,7 @@
 {
   "name": "@strv/heimdall",
   "description": "A simple process signal manager",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/heimdall/issues",
   "contributors": [],
