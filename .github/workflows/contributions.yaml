@@ -1,0 +1,45 @@
+name: Contribution Checks
+on: [pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-18.04
+    env:
+      CI: true
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install dependencies
+        run: make install
+
+      - name: Conventional Commits
+        run: npx commitlint --from $(git merge-base master HEAD)
+
+      - name: ESLint
+        uses: robertrossmann/eslint-action@master
+        with:
+          args: '"**/*.mjs"'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  test:
+    runs-on: ubuntu-18.04
+    env:
+      CI: true
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install dependencies
+        run: make install
+      - name: Compile project
+        run: make recompile
+      - name: Tests
+        run: make test

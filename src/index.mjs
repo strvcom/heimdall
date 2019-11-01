@@ -13,7 +13,7 @@
  *                                      changes its state
  * @return    {Promise}                 Returns whatever the Delegate's .execute() returns
  */
-function heimdall(delegate) {
+function heimdall(delegates) {
   async function onexit() {
     process.removeListener('SIGINT', onsignal)
     process.removeListener('SIGTERM', onsignal)
