@@ -1,6 +1,7 @@
 {
   "name": "@strv/heimdall",
   "description": "A simple process signal manager",
+  "version": "1.0.2",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/heimdall/issues",
   "contributors": [],
@@ -37,7 +38,6 @@
   "keywords": [],
   "license": "BSD-3-Clause",
   "main": "src",
-  "private": true,
   "publishConfig": {
     "access": "public"
   },
