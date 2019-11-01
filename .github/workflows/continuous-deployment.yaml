@@ -32,14 +32,14 @@ jobs:
     runs-on: ubuntu-18.04
     needs:
       - verify
+    env:
+      CI: true
 
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-        env:
-          CI: true
 
       - name: Install dependencies
         run: make install
