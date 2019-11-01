@@ -2,7 +2,7 @@
   "files.exclude": {
     "**/.git": true,
     "**/.DS_Store": true,
-    "{packages,test}/**/*.js": true,
+    "{src,test}/**/*.js": true,
     ".eslintcache": true,
     ".nyc_output": true,
   },
@@ -13,5 +13,11 @@
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
-  "triggerTaskOnSave.selectedTask": "babel:compile",
+  "triggerTaskOnSave.on": true,
+  "triggerTaskOnSave.tasks": {
+    "make:compile": [
+      "**/*.mjs",
+      "babel.config.js"
+    ]
+  }
 }

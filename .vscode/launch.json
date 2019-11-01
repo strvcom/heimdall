@@ -12,12 +12,12 @@
         "<node_internals/**"
       ],
       "smartStep": true,
-      "preLaunchTask": "babel:compile",
+      "preLaunchTask": "make:compile",
       "name": "Inspect: Mocha",
       "program": "${workspaceFolder}/node_modules/.bin/mocha",
       "args": [
         "--no-timeouts",
-        "packages/**/*.test.js"
+        "test/**/*.test.js"
       ]
     },
     {

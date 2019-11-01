@@ -1,0 +1,52 @@
+---
+name: Continuous Deployment
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  verify:
+    runs-on: ubuntu-18.04
+    env:
+      CI: true
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install dependencies
+        run: make install
+      - name: Compile project
+        run: make recompile
+
+      - name: ESLint
+        run: make lint
+      - name: Tests
+        run: make test
+
+  release:
+    runs-on: ubuntu-18.04
+    needs:
+      - verify
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+        env:
+          CI: true
+
+      - name: Install dependencies
+        run: make install
+      - name: Compile project
+        run: make recompile
+      - name: Publish to npm
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

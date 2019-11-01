@@ -2,9 +2,8 @@
 
 EXT=$1
 
-find . \
+find src test \
   -name "*.${EXT}" \
-  -not -path '*/node_modules/*' \
   -not -path '*/.*' \
   -not -name '.*.js' \
-  -not -name babel.config.js \
+  -not -name '*.config.js'

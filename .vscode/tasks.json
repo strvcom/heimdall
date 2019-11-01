@@ -4,7 +4,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "mocha:test",
+      "label": "make:test",
       "type": "process",
       "command": "make",
       "args": [
@@ -16,7 +16,7 @@
       }
     },
     {
-      "label": "babel:compile",
+      "label": "make:compile",
       "type": "process",
       "command": "make",
       "args": [
