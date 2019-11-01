@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/strvcom/heimdall/compare/1.1.0...1.1.1) (2019-11-01)
+
+
+### Bug Fixes
+
+* publish the npm tarball to Github Assets ([dfb7ec2](https://github.com/strvcom/heimdall/commit/dfb7ec22703546b6542ae587196f71edcdb81429))
+
 # [1.1.0](https://github.com/strvcom/heimdall/compare/1.0.2...1.1.0) (2019-11-01)
 
 
