@@ -46,6 +46,6 @@
     "url": "git@github.com:strvcom/heimdall.git"
   },
   "scripts": {
-    "install": "touch node_modules && make"
+    "prepare": "touch node_modules && make"
   }
 }
