@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/strvcom/heimdall/compare/1.1.1...1.1.2) (2019-11-07)
+
+
+### Bug Fixes
+
+* avoid running dev-only npm scripts when installing this package ([e846dfc](https://github.com/strvcom/heimdall/commit/e846dfc81e8065fe232d92e5ac26a8b994911da8))
+
 ## [1.1.1](https://github.com/strvcom/heimdall/compare/1.1.0...1.1.1) (2019-11-01)
 
 
