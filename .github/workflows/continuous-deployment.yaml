@@ -10,7 +10,7 @@ jobs:
   verify:
     runs-on: ubuntu-18.04
     env:
-      CI: true
+      CI: 'true'
 
     steps:
       - uses: actions/checkout@v1
@@ -33,7 +33,7 @@ jobs:
     needs:
       - verify
     env:
-      CI: true
+      CI: 'true'
 
     steps:
       - uses: actions/checkout@v1
