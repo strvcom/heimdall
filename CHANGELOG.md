@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/strvcom/heimdall/compare/1.1.2...1.1.3) (2019-12-02)
+
+
+### Bug Fixes
+
+* ensure compiled JS is included in the release 🤦‍♂️ ([246bfca](https://github.com/strvcom/heimdall/commit/246bfca8cd70c421d30ce77f975eb2e2c9e14fa9))
+
 ## [1.1.2](https://github.com/strvcom/heimdall/compare/1.1.1...1.1.2) (2019-11-07)
 
 
