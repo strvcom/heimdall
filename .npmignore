@@ -4,7 +4,6 @@ utils
 test
 
 .*
-lerna.json
 makefile
 *.mk
 *.config.js

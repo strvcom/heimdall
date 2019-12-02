@@ -22,7 +22,6 @@
     "@types/sinon": "^7.0.11",
     "eslint": "^6.2.2",
     "expect": "^24.7.1",
-    "lerna": "^3.13.4",
     "mocha": "^6.0.0",
     "mocha-reporter-remote": "^1.7.0",
     "nyc": "^14.0.0",
