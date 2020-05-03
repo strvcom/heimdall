@@ -5,15 +5,15 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Inspect: Mocha",
       "type": "node",
       "request": "launch",
-      "showAsyncStacks": true,
       "skipFiles": [
         "<node_internals/**"
       ],
+      "showAsyncStacks": true,
       "smartStep": true,
       "preLaunchTask": "make:compile",
-      "name": "Inspect: Mocha",
       "program": "${workspaceFolder}/node_modules/.bin/mocha",
       "args": [
         "--no-timeouts",
@@ -21,10 +21,14 @@
       ]
     },
     {
+      "name": "Attach",
       "type": "node",
       "request": "attach",
-      "name": "Attach",
-      "protocol": "inspector"
+      "showAsyncStacks": true,
+      "smartStep": true,
+      "skipFiles": [
+        "<node_internals/**"
+      ],
     }
   ]
 }
