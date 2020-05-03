@@ -1,5 +1,7 @@
 'use strict'
 
+const os = require('os')
+
 module.exports = {
   extends: [
     '@strv/node/v10',
@@ -10,6 +12,11 @@ module.exports = {
   rules: {
     // If your editor cannot show these to you, occasionally turn this off and run the linter
     'no-warning-comments': 0,
+
+    // This repository is configured so that upon checkout, git should convert line endings to
+    // platform-specific defaults and convert them back to LF when checking in. As such, we must
+    // enforce CRLF endings on Windows, otherwise the lint task would fail on Windows systems.
+    'linebreak-style': ['error', os.platform() === 'win32' ? 'windows' : 'unix'],
   },
 
   overrides: [{
@@ -42,6 +49,7 @@ module.exports = {
 
     rules: {
       '@typescript-eslint/prefer-readonly-parameter-types': 'off',
+      'linebreak-style': ['error', os.platform() === 'win32' ? 'windows' : 'unix'],
     },
   }, {
     files: [
