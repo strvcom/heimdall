@@ -4,41 +4,9 @@ name: Continuous Deployment
 on:
   push:
     branches:
-      - master
+      - release
 
 jobs:
-  verify:
-    strategy:
-      matrix:
-        os:
-          - ubuntu-18.04
-          - macos-10.15
-          - windows-2019
-        node:
-          - 12
-          - 14
-
-    runs-on: ${{ matrix.os }}
-    timeout-minutes: 10
-    env:
-      CI: 'true'
-
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
-
-      - run: make install
-      - run: make compile
-
-      - name: ESLint
-        run: make lint
-      - name: Tests
-        run: make test
-
   release:
     runs-on: ubuntu-18.04
     timeout-minutes: 10
