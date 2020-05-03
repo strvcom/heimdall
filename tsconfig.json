@@ -3,7 +3,7 @@
     "incremental": true,
     "noEmitOnError": true,
     "tsBuildInfoFile": ".buildstate/tsconfig.tsbuildinfo",
-    "target": "ES2018",
+    "target": "ES2019",
     "module": "commonjs",
     "declaration": true,
     "declarationMap": true,
