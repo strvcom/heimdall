@@ -1,8 +1,8 @@
 import { describe, it, before, after, beforeEach } from 'mocha'
 import * as expect from 'expect'
 import * as sinon from 'sinon'
-import { mkdelegate, lastsignalhandler, nextloop } from './utils'
 import { heimdall } from '..'
+import { mkdelegate, lastsignalhandler, nextloop } from './utils'
 
 type SignalHandlerStub = sinon.SinonStub<[string, (event: string) => void], void>
 type ProcessExitStub = sinon.SinonStub<[number?], void>
