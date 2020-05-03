@@ -29,8 +29,9 @@ heimdall({
    * @return    {Promise}
    */
   async execute() {
-    // Start whatever you need to start in this process.
-    await app.start(process.env.PORT)
+    // Start whatever you need to start in this process. Whatever you return from this function, you
+    // will receive it in the .exit() method below.
+    return await app.start(process.env.PORT)
   },
 
   /**
@@ -39,10 +40,13 @@ heimdall({
    * that it can safely exit itself.
    * @return    {Promise}
    */
-  async exit() {
+  async exit({ runtime }) {
     // Stop your servers, close down your open sockets or other activities that might be
     // keeping the Node process running.
     await app.stop()
+
+    // runtime is exactly what you returned in .execute(), in this case it is the Koa instance
+    app === runtime
   },
 
   /**

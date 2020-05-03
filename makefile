@@ -11,49 +11,48 @@ NPM_I := $(if $(CI), ci, install)
 # MOCHA_FLAGS += --reporter nyan
 # Now mocha will be invoked with the extra flag and will show a nice nyan cat as progress bar 🎉
 MOCHA_FLAGS :=
-BABEL_FLAGS :=
+TSC_FLAGS :=
 ESLINT_FLAGS :=
 NPM_FLAGS :=
 
-SRCFILES = $(shell utils/make/projectfiles.sh mjs)
-DSTFILES = $(patsubst %.mjs, %.js, $(SRCFILES))
+SRCFILES = $(shell utils/make/projectfiles.sh ts)
+DSTFILES = $(patsubst %.ts, %.js, $(SRCFILES))
 GITFILES = $(patsubst utils/githooks/%, .git/hooks/%, $(wildcard utils/githooks/*))
 TSTFILES = "test/**/*.test.js"
 
 # Do this when make is invoked without targets
-all: recompile $(GITFILES)
+all: compile $(GITFILES)
 
 
 # GENERIC TARGETS
 
-node_modules: package.json
-	npm $(NPM_I) $(NPM_FLAGS) && touch node_modules
+.buildstate:
+	mkdir .buildstate
 
-# Default compilation target for all source files
-%.js: %.mjs node_modules babel.config.js
-	babel $< --out-file $@ $(BABEL_FLAGS)
+.buildstate/compile.make: node_modules tsconfig.json $(SRCFILES) .buildstate
+	tsc $(TSC_FLAGS) && touch $@
+
+node_modules: package.json
+	npm $(NPM_I) $(NPM_FLAGS) && touch $@
 
 # Default target for all possible git hooks
 .git/hooks/%: utils/githooks/%
 	cp $< $@
 
-coverage/lcov.info: $(DSTFILES)
+coverage/lcov.info: compile
 	nyc mocha $(MOCHA_FLAGS) $(TSTFILES)
 
 
 # TASK DEFINITIONS
 
-compile: $(DSTFILES)
+compile: .buildstate/compile.make
 
 coverage: coverage/lcov.info
-
-recompile: install
-	babel . --extensions .mjs --out-dir . $(BABEL_FLAGS)
 
 install: node_modules $(GITFILES)
 
 lint: force install
-	eslint --cache --ext .mjs --report-unused-disable-directives $(ESLINT_FLAGS) .
+	eslint --cache --ext js,ts --report-unused-disable-directives $(ESLINT_FLAGS) .
 	remark --quiet .
 
 test: force compile
@@ -62,8 +61,11 @@ test: force compile
 inspect: force compile
 	mocha --inspect --inspect-brk $(MOCHA_FLAGS) $(TSTFILES)
 
-watch: force compile
-	mocha $(MOCHA_FLAGS) --watch $(TSTFILES)
+watchcompile: force install
+	tsc $(TSC_FLAGS) --watch
+
+watch: force install
+	mocha --reporter min $(MOCHA_FLAGS) --watch $(DSTFILES) $(TSTFILES)
 
 unlock: pristine
 	rm -f package-lock.json
@@ -74,7 +76,10 @@ clean:
 	find . -not -path '*/node_modules/*' -name '*.log' -print -delete
 
 distclean: clean
+	rm -rf .buildstate
 	rm -f $(shell ./utils/make/projectfiles.sh js)
+	rm -f $(shell find src test -name "*.d.ts")
+	rm -f $(shell ./utils/make/projectfiles.sh map)
 
 pristine: distclean
 	rm -rf node_modules

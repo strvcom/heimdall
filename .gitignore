@@ -11,6 +11,8 @@ local.mk
 # Compiled files
 **/*.js
 **/*.js.map
+**/*.d.ts
+**/*.d.ts.map
 !*.config.js
 !**/.*.js
 # Fix for Atom bug - the above re-inclusion of .*.js files incorrectly re-adds also any *.test.js
@@ -30,6 +32,8 @@ gh-pages
 .DS_Store
 .nyc_output
 .eslintcache
+*.tsbuildinfo
+.buildstate
 
 # IDE stuff
 .netbeans

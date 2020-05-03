@@ -13,6 +13,12 @@
       "group": {
         "kind": "test",
         "isDefault": true
+      },
+      "problemMatcher": [
+        "$tsc"
+      ],
+      "presentation": {
+        "clear": true
       }
     },
     {
@@ -30,6 +36,55 @@
         "reveal": "silent",
         "clear": true
       },
+      "problemMatcher": [
+        "$tsc"
+      ]
+    },
+    {
+      "label": "make:watchcompile",
+      "detail": "Start TypeScript compiler in watch mode",
+      "type": "process",
+      "command": "make",
+      "args": [
+        "watchcompile"
+      ],
+      "problemMatcher": [
+        "$tsc-watch",
+      ],
+      "group": "build",
+      "isBackground": true,
+      "runOptions": {
+        "instanceLimit": 1,
+        "runOn": "folderOpen"
+      },
+      "presentation": {
+        "echo": false,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "dependsOn": "npm: install"
+    },
+    {
+      "label": "make:watch",
+      "detail": "Start Test suite in watch mode",
+      "type": "process",
+      "command": "make",
+      "args": [
+        "watch"
+      ],
+      "problemMatcher": [],
+      "group": "test",
+      "isBackground": true,
+      "runOptions": {
+        "instanceLimit": 1
+      },
+      "presentation": {
+        "echo": false,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": true
+      }
     }
   ]
 }
