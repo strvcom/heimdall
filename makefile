@@ -84,6 +84,12 @@ distclean: clean
 pristine: distclean
 	rm -rf node_modules
 
+release/latest:
+	utils/make/release.sh latest
+
+release/next:
+	utils/make/release.sh next noclean
+
 .PHONY: force
 
 -include local.mk

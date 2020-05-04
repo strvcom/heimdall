@@ -1,23 +1,29 @@
 #!/bin/sh
 
+channel="$1"
+noclean="$2"
+
 set -o errexit
 
 head=$(git rev-parse --abbrev-ref HEAD)
+branch="release/${channel}"
 
-printf "\n=====>\tCreating release branch...\n"
+printf "\n=====>\tCreating release branch: %s...\n" "${branch}"
 
-git checkout -b release
+git checkout -B "${branch}"
 
 printf "\n=====>\tPushing...\n"
 
-git push --set-upstream origin release
+git push --set-upstream origin "${branch}"
 
-printf "\n=====>\tSwitching back to previous branch...\n"
+printf "\n=====>\tSwitching back to previous branch: %s...\n" "${head}"
 
 git checkout "${head}"
 
-printf "\n=====>\tDeleting local release branch...\n"
+if [ "${noclean}" != "noclean" ]; then
+  printf "\n=====>\tDeleting local release branch: %s...\n" "${branch}"
 
-git branch --delete release
+  git branch --delete "${branch}"
+fi
 
 printf "\n=====>\tRelease in progress: https://github.com/strvcom/heimdall/actions\n"

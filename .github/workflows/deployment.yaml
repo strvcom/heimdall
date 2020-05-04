@@ -4,7 +4,7 @@ name: Continuous Deployment
 on:
   push:
     branches:
-      - release
+      - release/*
 
 jobs:
   release:
@@ -33,4 +33,4 @@ jobs:
 
       - name: Post-release sync
         run: ./utils/ci/sync.sh
-        if: success()
+        if: success() && endsWith(github.ref, 'release/latest')

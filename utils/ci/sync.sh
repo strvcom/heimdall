@@ -10,7 +10,7 @@ git fetch origin
 printf "\n=====>\tMerging to master...\n"
 
 git checkout master
-git merge release
+git merge release/latest
 
 # Print the repo status after merging, for troubleshooting purposes
 git status
@@ -21,4 +21,4 @@ printf "\n=====>\tPushing...\n"
 git push origin master
 
 printf "\n=====>\tCleaning up...\n"
-git push origin :release
+git push origin :release/latest
