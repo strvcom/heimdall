@@ -17,7 +17,7 @@
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
-  // Superseded by VS Code's task: make:watchcompile
+  // Superseded by VS Code's task: make:watch/compile
   "triggerTaskOnSave.on": false,
   "triggerTaskOnSave.showStatusBarToggle": false,
   "triggerTaskOnSave.showBusyIndicator": false,

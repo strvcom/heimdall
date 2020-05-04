@@ -61,10 +61,10 @@ test: force compile
 inspect: force compile
 	mocha --inspect --inspect-brk $(MOCHA_FLAGS) $(TSTFILES)
 
-watchcompile: force install
+watch/compile: force install
 	tsc $(TSC_FLAGS) --watch
 
-watch: force install
+watch/test: force install
 	mocha --reporter min $(MOCHA_FLAGS) --watch $(DSTFILES) $(TSTFILES)
 
 unlock: pristine

@@ -41,12 +41,12 @@
       ]
     },
     {
-      "label": "make:watchcompile",
+      "label": "make:watch/compile",
       "detail": "Start TypeScript compiler in watch mode",
       "type": "process",
       "command": "make",
       "args": [
-        "watchcompile"
+        "watch/compile"
       ],
       "problemMatcher": [
         "$tsc-watch",
@@ -66,12 +66,12 @@
       "dependsOn": "npm: install"
     },
     {
-      "label": "make:watch",
+      "label": "make:watch/test",
       "detail": "Start Test suite in watch mode",
       "type": "process",
       "command": "make",
       "args": [
-        "watch"
+        "watch/test"
       ],
       "problemMatcher": [],
       "group": "test",
