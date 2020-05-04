@@ -4,7 +4,7 @@ module.exports = {
   // eslint-disable-next-line no-template-curly-in-string
   tagFormat: '${version}',
   branches: [
-    { name: 'release/latest', channel: 'latest' },
+    { name: 'release/latest' },
     { name: 'release/next', channel: 'next', prerelease: 'beta' },
   ],
 
