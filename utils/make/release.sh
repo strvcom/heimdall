@@ -1,12 +1,11 @@
 #!/bin/sh
 
-channel="$1"
+branch="$1"
 noclean="$2"
 
 set -o errexit
 
 head=$(git rev-parse --abbrev-ref HEAD)
-branch="release/${channel}"
 
 printf "\n=====>\tCreating release branch: %s...\n" "${branch}"
 

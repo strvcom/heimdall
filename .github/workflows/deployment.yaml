@@ -31,4 +31,4 @@ jobs:
 
       - name: Post-release sync
         run: ./utils/ci/sync.sh
-        if: success() && endsWith(github.ref, 'release/latest')
+        if: success() && endsWith(github.ref, 'release')
