@@ -1,3 +1,20 @@
+# [2.0.0-alpha.1](https://github.com/strvcom/heimdall/compare/1.1.3...2.0.0-alpha.1) (2020-05-05)
+
+
+### Features
+
+* add commitlint Github Action ([66349e4](https://github.com/strvcom/heimdall/commit/66349e4aec59f28136b0aeaf1a7ebce6d534cf82))
+* drop Node.js 10 support ([ca2f8ad](https://github.com/strvcom/heimdall/commit/ca2f8ad2a4b107a06624542c10de7b6c23b550e3))
+* mark Node.js 14 as officially supported ([faca8aa](https://github.com/strvcom/heimdall/commit/faca8aa177130c08b0dfe73b27d63d5ee72a957c))
+* rewrite to TypeScript ([6c59432](https://github.com/strvcom/heimdall/commit/6c5943240afdc3c19a1ed8eaf778f148ed163a7c))
+
+
+### BREAKING CHANGES
+
+* Node.js v10 is no longer supported.
+* Heimdall will no longer wait 10 seconds after a second signal has been received before it forcibly kills the process. Instead, it will kill the process immediatelly in the next event loop.
+* Node.js 11 is no longer officially supported although it is unlikely that Heimdall will not work on this release.
+
 ## [1.1.3](https://github.com/strvcom/heimdall/compare/1.1.2...1.1.3) (2019-12-02)
 
 
