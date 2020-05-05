@@ -1,3 +1,10 @@
+# [2.0.0-alpha.2](https://github.com/strvcom/heimdall/compare/2.0.0-alpha.1...2.0.0-alpha.2) (2020-05-05)
+
+
+### Features
+
+* allow Delegate to log errors by implementing .logError() ([c6403f7](https://github.com/strvcom/heimdall/commit/c6403f7c956e7a95638628af0ffeb256ee8332b2))
+
 # [2.0.0-alpha.1](https://github.com/strvcom/heimdall/compare/1.1.3...2.0.0-alpha.1) (2020-05-05)
 
 
