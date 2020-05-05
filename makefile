@@ -85,10 +85,10 @@ pristine: distclean
 	rm -rf node_modules
 
 release/latest:
-	utils/make/release.sh release
+	utils/make/release.sh release/latest
 
 release/next:
-	utils/make/release.sh release/next noclean
+	utils/make/release.sh release/next
 
 .PHONY: force
 

@@ -23,7 +23,7 @@ jobs:
 
       - run: make install
       - run: make compile
-      - name: Publish to npm
+      - name: Semantic Release
         run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -31,4 +31,4 @@ jobs:
 
       - name: Post-release sync
         run: ./utils/ci/sync.sh
-        if: success() && endsWith(github.ref, 'release')
+        if: success()
