@@ -27,12 +27,12 @@ async function heimdall<Runtime>(delegate: Delegate<Runtime>): Promise<void> {
           delegate.didReceiveForcequit()
         }
 
-        return void fatal(new Error('Forced quit'))
+        return void fatal(delegate, new Error('Forced quit'))
       }
 
       await delegate.exit({ runtime })
     } catch (err) {
-      return void fatal(err)
+      return void fatal(delegate, err)
     } finally {
       cleanup(onsignal)
     }
@@ -47,21 +47,27 @@ async function heimdall<Runtime>(delegate: Delegate<Runtime>): Promise<void> {
     runtime = await delegate.execute()
   } catch (err) {
     cleanup(onsignal)
-    return void fatal(err)
+    return void fatal(delegate, err)
   }
 }
 
-function fatal(err: Error|string|number|undefined): void {
-  // eslint-disable-next-line no-console
-  void (isError(err) ? console.error(err.stack) : console.error(err))
+function fatal(delegate: Delegate<unknown>, err: unknown): void {
+  // User code can potentially throw anything, so we check if it's actually an Error and if not, we
+  // make one.
+  const error = err instanceof Error
+    ? err
+    : new Error(String(err))
+
+  if (typeof delegate.logError === 'function') {
+    delegate.logError(error)
+  } else {
+    // eslint-disable-next-line no-console
+    console.error(error.stack)
+  }
 
   // Intentionally let the current event loop finish, then terminate the process
   // eslint-disable-next-line no-process-exit
   return void process.nextTick(() => void process.exit(1))
-}
-
-function isError(err: Error|string|number|undefined): err is Error {
-  return err instanceof Error
 }
 
 function cleanup(handler: (signal: SignalOrExitCode) => Promise<void>): void {

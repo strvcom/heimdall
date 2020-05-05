@@ -50,7 +50,7 @@ heimdall({
   },
 
   /**
-   * This method will be invoked by Heimdall when the process receives a second `SIGINT` or
+   * This optional method will be invoked by Heimdall when the process receives a second `SIGINT` or
    * `SIGTERM` signal (ie. the user pressing ctrl+c twice). You can log something to the console or
    * perform synchronous cleanup, but the Node process will be terminated shortly and any async I/O
    * operations are not guaranteed to complete in time.
@@ -59,6 +59,17 @@ heimdall({
   didReceiveForcequit() {
     // This is a synchronous method call. Running async I/O operations is not guaranteed to work.
   },
+
+  /**
+   * This optional method will be used by Heimdall when one of the Delegate's methods throws an
+   * error. Heimdall logs these errors to the stderr output stream but if you implement this method,
+   * it will let you log the error using your logging solution of choice.
+   *
+   * The log should be synchronous as the process will be terminated in the next event loop.
+   */
+  logError(err) {
+    pino.error({ err }, 'heimdall received error')
+  }
 })
 ```
 

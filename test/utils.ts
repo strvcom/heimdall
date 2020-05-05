@@ -2,12 +2,19 @@ import type { EventEmitter } from 'events'
 import * as sinon from 'sinon'
 import * as expect from 'expect'
 
+interface FakeDelegate<Runtime> {
+  execute: sinon.SinonStub<[], Promise<Runtime>>
+  exit: sinon.SinonStub<[{ runtime?: Runtime }], Promise<void>>
+  didReceiveForcequit: sinon.SinonStub<[], void>
+  logError?: sinon.SinonStub<[Error], void>
+}
+
 /**
  * Create a fake Delegate for Heimdall to trigger events on it.
  *
  * @private
  */
-function mkdelegate<Runtime>() {
+function mkdelegate<Runtime>(): FakeDelegate<Runtime> {
   return {
     execute: sinon.stub<[], Promise<Runtime>>().resolves(),
     exit: sinon.stub<[{ runtime?: Runtime }], Promise<void>>().resolves(),

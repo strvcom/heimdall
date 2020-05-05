@@ -30,6 +30,15 @@ interface Delegate<Runtime> {
    * this function will NOT be completed.
    */
   didReceiveForcequit?(): void
+
+  /**
+   * Log the given error instance to a console or other log destination
+   *
+   * If you have a custom logging solution or if you would like to customise how a potential error
+   * is printed to the console, you can implement this method and Heimdall will defer all error
+   * logging to it, instead of logging using the built-in `console.error()` method.
+   */
+  logError?(error: Error): void
 }
 
 export {

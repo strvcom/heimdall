@@ -226,4 +226,54 @@ describe('Heimdall', () => {
       expect(stubs.process.exit.callCount).toBe(1)
     })
   })
+
+
+  describe('.logError() is implemented', () => {
+    it('is used when .exit() fails', async () => {
+      const delegate = mkdelegate()
+      delegate.logError = sinon.stub()
+      delegate.exit.callsFake(() => {
+        throw new Error('fake .exit() failed')
+      })
+
+      await heimdall(delegate)
+      await lastsignalhandler(stubs.process.on, 'SIGINT')
+
+      expect(stubs.console.error.callCount).toBe(0)
+      expect(delegate.logError.callCount).toBe(1)
+      expect(delegate.logError.lastCall.args[0])
+        .toHaveProperty('message', 'fake .exit() failed')
+    })
+
+    it('is used when .execute() fails', async () => {
+      const delegate = mkdelegate()
+      delegate.logError = sinon.stub()
+      delegate.execute.callsFake(() => {
+        throw new Error('fake .execute() failed')
+      })
+
+      await heimdall(delegate)
+
+      expect(stubs.console.error.callCount).toBe(0)
+      expect(delegate.logError.callCount).toBe(1)
+      expect(delegate.logError.lastCall.args[0])
+        .toHaveProperty('message', 'fake .execute() failed')
+    })
+
+    it('is used when a second signal is received', async () => {
+      const delegate = mkdelegate()
+      delegate.logError = sinon.stub()
+      delegate.exit.returns(new Promise(() => {}))
+
+      await heimdall(delegate)
+      lastsignalhandler(stubs.process.on, 'SIGINT').catch(() => {})
+      lastsignalhandler(stubs.process.on, 'SIGINT').catch(() => {})
+      await nextloop()
+
+      expect(stubs.console.error.callCount).toBe(0)
+      expect(delegate.logError.callCount).toBe(1)
+      expect(delegate.logError.lastCall.args[0])
+        .toHaveProperty('message', 'Forced quit')
+    })
+  })
 })
