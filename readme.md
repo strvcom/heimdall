@@ -1,7 +1,6 @@
 # @strv/heimdall
 
-[![Build Status][travis-badge]][travis-url]
-![Built with GNU Make][make-badge]
+[![Build Status][ci-badge]][ci-url]
 
 > The process lifecycle gatekeeper.
 >
@@ -78,6 +77,5 @@ heimdall({
 See the [LICENSE](LICENSE) file for information.
 
 [strv-home]: https://www.strv.com
-[travis-badge]: https://img.shields.io/travis/com/strvcom/heimdall.svg?style=flat-square
-[travis-url]: https://travis-ci.com/strvcom/heimdall
-[make-badge]: https://img.shields.io/badge/Built%20with-GNU%20Make-brightgreen.svg?style=flat-square
+[ci-badge]: https://github.com/strvcom/heimdall/workflows/Continuous%20Integration/badge.svg
+[ci-url]: https://travis-ci.com/strvcom/heimdall
