@@ -6,7 +6,7 @@
   "configurations": [
     {
       "name": "Inspect: Mocha",
-      "type": "node",
+      "type": "pwa-node",
       "request": "launch",
       "skipFiles": [
         "<node_internals/**"
@@ -22,7 +22,7 @@
     },
     {
       "name": "Attach",
-      "type": "node",
+      "type": "pwa-node",
       "request": "attach",
       "showAsyncStacks": true,
       "smartStep": true,
