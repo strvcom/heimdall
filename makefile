@@ -72,14 +72,12 @@ unlock: pristine
 	touch package.json
 
 clean:
-	rm -rf {.nyc_output,coverage,docs,.eslintcache}
+	rm -rf .nyc_output coverage docs .eslintcache
 	find . -not -path '*/node_modules/*' -name '*.log' -print -delete
 
 distclean: clean
 	rm -rf .buildstate
-	rm -f $(shell ./utils/make/projectfiles.sh js)
-	rm -f $(shell find src test -name "*.d.ts")
-	rm -f $(shell ./utils/make/projectfiles.sh map)
+	git clean -Xf src test
 
 pristine: distclean
 	rm -rf node_modules
