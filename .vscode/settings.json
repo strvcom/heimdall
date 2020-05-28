@@ -2,9 +2,10 @@
   "files.exclude": {
     "**/.git": true,
     "**/.DS_Store": true,
-    "{src,test}/**/*.js": true,
-    "{src,test}/**/*.d.ts": true,
-    "{src,test}/**/*.ts.map": true,
+    "**/*.ts.map": true,
+    "**/*.{js,d.ts}": {
+      "when": "$(basename).ts"
+    },
     ".eslintcache": true,
     "*.tsbuildinfo": true,
     ".buildstate": true,
