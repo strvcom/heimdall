@@ -29,7 +29,7 @@ all: compile $(GITFILES)
 .buildstate:
 	mkdir .buildstate
 
-.buildstate/compile.make: node_modules tsconfig.json $(SRCFILES) .buildstate
+.buildstate/tsconfig.tsbuildinfo: node_modules tsconfig.json $(SRCFILES) .buildstate
 	tsc $(TSC_FLAGS) && touch $@
 
 node_modules: package.json
@@ -45,7 +45,7 @@ coverage/lcov.info: compile
 
 # TASK DEFINITIONS
 
-compile: .buildstate/compile.make
+compile: .buildstate/tsconfig.tsbuildinfo
 
 coverage: coverage/lcov.info
 
