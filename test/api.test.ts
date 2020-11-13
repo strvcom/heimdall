@@ -276,4 +276,16 @@ describe('Heimdall', () => {
         .toHaveProperty('message', 'Forced quit')
     })
   })
+
+
+  describe('.exitAfterExecute === true', () => {
+    it('calls .exit() when .execute() resolves', async () => {
+      const delegate = mkdelegate()
+      delegate.exitAfterExecute = true
+
+      await heimdall(delegate)
+
+      expect(delegate.exit.callCount).toBe(1)
+    })
+  })
 })

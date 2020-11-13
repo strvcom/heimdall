@@ -3,6 +3,14 @@
  */
 interface Delegate<Runtime> {
   /**
+   * Set this to true to let Heimdall call the exit handler as soon as the execute handler finishes
+   *
+   * This is ideal for one-off scripts, commands or other utilities where you want to do a task and
+   * then let the process exit gracefully.
+   */
+  exitAfterExecute?: boolean
+
+  /**
    * Invoked immediately when heimdall receives the delegate
    *
    * You can start your servers, set up event listeners or perform other async initialisation work

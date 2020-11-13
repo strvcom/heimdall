@@ -49,6 +49,11 @@ async function heimdall<Runtime>(delegate: Delegate<Runtime>): Promise<void> {
     cleanup(onsignal)
     return void fatal(delegate, err)
   }
+
+  if (delegate.exitAfterExecute) {
+    await delegate.exit({ runtime })
+    cleanup(onsignal)
+  }
 }
 
 function fatal(delegate: Delegate<unknown>, err: unknown): void {

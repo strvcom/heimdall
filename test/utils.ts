@@ -1,8 +1,9 @@
 import type { EventEmitter } from 'events'
 import * as sinon from 'sinon'
 import * as expect from 'expect'
+import type { Delegate } from '..'
 
-interface FakeDelegate<Runtime> {
+interface FakeDelegate<Runtime> extends Delegate<Runtime> {
   execute: sinon.SinonStub<[], Promise<Runtime>>
   exit: sinon.SinonStub<[{ runtime?: Runtime }], Promise<void>>
   didReceiveForcequit?: sinon.SinonStub<[], void>
@@ -16,6 +17,7 @@ interface FakeDelegate<Runtime> {
  */
 function mkdelegate<Runtime>(): FakeDelegate<Runtime> {
   return {
+    exitAfterExecute: false,
     execute: sinon.stub<[], Promise<Runtime>>().resolves(),
     exit: sinon.stub<[{ runtime?: Runtime }], Promise<void>>().resolves(),
     didReceiveForcequit: sinon.stub(),
