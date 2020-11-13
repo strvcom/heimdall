@@ -65,7 +65,7 @@ watch/compile: force install
 	tsc $(TSC_FLAGS) --watch
 
 watch/test: force install
-	mocha --reporter min $(MOCHA_FLAGS) --watch $(DSTFILES) $(TSTFILES)
+	mocha $(MOCHA_FLAGS) --watch "{src,test}/**/*.js" $(TSTFILES)
 
 unlock: pristine
 	rm -f package-lock.json
