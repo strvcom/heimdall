@@ -5,7 +5,7 @@ import * as expect from 'expect'
 interface FakeDelegate<Runtime> {
   execute: sinon.SinonStub<[], Promise<Runtime>>
   exit: sinon.SinonStub<[{ runtime?: Runtime }], Promise<void>>
-  didReceiveForcequit: sinon.SinonStub<[], void>
+  didReceiveForcequit?: sinon.SinonStub<[], void>
   logError?: sinon.SinonStub<[Error], void>
 }
 

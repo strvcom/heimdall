@@ -92,7 +92,7 @@ describe('Heimdall', () => {
 
           // .exit() should be called only once
           expect(delegate.exit.callCount).toBe(1)
-          expect(delegate.didReceiveForcequit.callCount).toBe(1)
+          expect(delegate.didReceiveForcequit?.callCount).toBe(1)
         })
 
         it(`${signal} does not trigger .didReceiveForcequit() when not implemented`, async () => {
@@ -181,7 +181,7 @@ describe('Heimdall', () => {
       lastsignalhandler(stubs.process.on, 'SIGINT').catch(() => {})
       lastsignalhandler(stubs.process.on, 'SIGINT').catch(() => {})
 
-      expect(delegate.didReceiveForcequit.callCount).toBe(1)
+      expect(delegate.didReceiveForcequit?.callCount).toBe(1)
       expect(stubs.process.exit.callCount).toBe(0)
 
       await nextloop()
