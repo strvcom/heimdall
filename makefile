@@ -40,7 +40,7 @@ node_modules: package.json
 	cp $< $@
 
 coverage/lcov.info: .buildstate/tsconfig.tsbuildinfo
-	nyc mocha $(MOCHA_FLAGS) $(TSTFILES)
+	c8 mocha $(MOCHA_FLAGS) $(TSTFILES)
 
 
 # TASK DEFINITIONS
@@ -72,7 +72,7 @@ unlock: pristine
 	touch package.json
 
 clean:
-	rm -rf .nyc_output coverage docs .eslintcache
+	rm -rf coverage docs .eslintcache
 	find . -not -path '*/node_modules/*' -name '*.log' -print -delete
 
 distclean: clean
