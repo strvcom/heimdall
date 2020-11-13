@@ -39,7 +39,7 @@ node_modules: package.json
 .git/hooks/%: utils/githooks/%
 	cp $< $@
 
-coverage/lcov.info: compile
+coverage/lcov.info: .buildstate/tsconfig.tsbuildinfo
 	nyc mocha $(MOCHA_FLAGS) $(TSTFILES)
 
 
