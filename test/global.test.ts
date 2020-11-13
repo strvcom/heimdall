@@ -6,7 +6,7 @@ const checklisteners = mklistenercheck(process, ['SIGINT', 'SIGTERM', 'beforeExi
 
 describe('test environment', () => {
   it('defines NODE_ENV', () => {
-    // eslint-disable-next-line no-process-env
+    // eslint-disable-next-line node/no-process-env
     expect(process.env.NODE_ENV).toBe('test')
   })
 

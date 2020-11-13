@@ -31,6 +31,6 @@
   },
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "eslint.lintTask.options": "--report-unused-disable-directives --cache --ext js,ts .",
+  "eslint.lintTask.options": "--cache --ext js,ts .",
   "mochaExplorer.files": "{src,test}/**/*.test.js"
 }

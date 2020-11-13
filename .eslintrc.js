@@ -2,11 +2,23 @@
 
 const os = require('os')
 
+const lbstyle = os.platform() === 'win32' ? 'windows' : 'unix'
+
 module.exports = {
+  reportUnusedDisableDirectives: true,
+
   extends: [
-    '@strv/node/v10',
+    '@strv/node/v12',
     '@strv/node/optional',
     '@strv/node/style',
+  ],
+
+  ignorePatterns: [
+    '*.js',
+    '*.d.ts',
+    '!.*.js',
+    '!*.config.js',
+    'node_modules',
   ],
 
   rules: {
@@ -16,7 +28,7 @@ module.exports = {
     // This repository is configured so that upon checkout, git should convert line endings to
     // platform-specific defaults and convert them back to LF when checking in. As such, we must
     // enforce CRLF endings on Windows, otherwise the lint task would fail on Windows systems.
-    'linebreak-style': ['error', os.platform() === 'win32' ? 'windows' : 'unix'],
+    'linebreak-style': ['error', lbstyle],
   },
 
   overrides: [{
@@ -27,7 +39,7 @@ module.exports = {
     ],
 
     extends: [
-      '@strv/node/v10',
+      '@strv/node/v12',
       '@strv/node/optional',
       '@strv/eslint-config-typescript',
       '@strv/eslint-config-typescript/style',
@@ -48,16 +60,7 @@ module.exports = {
     },
 
     rules: {
-      '@typescript-eslint/prefer-readonly-parameter-types': 'off',
-      'linebreak-style': ['error', os.platform() === 'win32' ? 'windows' : 'unix'],
-    },
-  }, {
-    files: [
-      'test/**/*.ts',
-    ],
-
-    rules: {
-      '@typescript-eslint/explicit-function-return-type': 'off',
+      'linebreak-style': ['error', lbstyle],
     },
   }],
 }

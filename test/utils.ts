@@ -30,7 +30,7 @@ function mkdelegate<Runtime>(): FakeDelegate<Runtime> {
 async function lastsignalhandler(
   stub: sinon.SinonStub<[string, (event: string) => void], void>,
   signal: NodeJS.Signals | 'beforeExit',
-) {
+): Promise<void> {
   // Find the last signal handler attached to the stub and call it
   const calls = stub.getCalls().filter(call => call.args[0] === signal)
   const handler = calls.pop()?.args[1]
@@ -53,7 +53,7 @@ async function lastsignalhandler(
  *
  * @private
  */
-function mklistenercheck(emitter: EventEmitter, events: string[]) {
+function mklistenercheck(emitter: EventEmitter, events: string[]): () => void {
   const counts = new Map<string, number>()
 
   for (const event of events) {
@@ -74,7 +74,7 @@ function mklistenercheck(emitter: EventEmitter, events: string[]) {
  *
  * @private
  */
-async function nextloop() {
+async function nextloop(): Promise<void> {
   await new Promise(resolve => setImmediate(resolve))
 }
 

@@ -52,7 +52,7 @@ coverage: coverage/lcov.info
 install: node_modules $(GITFILES)
 
 lint: force install
-	eslint --cache --ext js,ts --report-unused-disable-directives $(ESLINT_FLAGS) .
+	eslint --cache --ext js,ts $(ESLINT_FLAGS) .
 	remark --quiet .
 
 test: force compile

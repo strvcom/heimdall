@@ -66,7 +66,7 @@ function fatal(delegate: Delegate<unknown>, err: unknown): void {
   }
 
   // Intentionally let the current event loop finish, then terminate the process
-  // eslint-disable-next-line no-process-exit
+  // eslint-disable-next-line node/no-process-exit
   return void process.nextTick(() => void process.exit(1))
 }
 

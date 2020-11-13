@@ -1,2 +1,2 @@
-// eslint-disable-next-line no-process-env
+// eslint-disable-next-line node/no-process-env
 process.env.NODE_ENV = 'test'
