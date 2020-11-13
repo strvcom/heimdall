@@ -18,17 +18,6 @@
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
-  // Superseded by VS Code's task: make:watch/compile
-  "triggerTaskOnSave.on": false,
-  "triggerTaskOnSave.showStatusBarToggle": false,
-  "triggerTaskOnSave.showBusyIndicator": false,
-  "triggerTaskOnSave.tasks": {
-    "make:compile": [
-      "**/*.ts",
-      "**/*.test.ts",
-      "tsconfig.json"
-    ]
-  },
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "eslint.lintTask.options": "--cache --ext js,ts .",

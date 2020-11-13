@@ -5,6 +5,7 @@
   "tasks": [
     {
       "label": "make:test",
+      "detail": "Run the test suite",
       "type": "process",
       "command": "make",
       "args": [
@@ -23,6 +24,7 @@
     },
     {
       "label": "make:compile",
+      "detail": "Compile the project (TypeScript)",
       "type": "process",
       "command": "make",
       "args": [
@@ -33,7 +35,7 @@
         "isDefault": true
       },
       "presentation": {
-        "reveal": "silent",
+        "revealProblems": "onProblem",
         "clear": true
       },
       "problemMatcher": [
@@ -61,9 +63,10 @@
         "echo": false,
         "panel": "dedicated",
         "showReuseMessage": false,
-        "clear": true
+        "clear": true,
+        "reveal": "never",
+        "revealProblems": "onProblem"
       },
-      "dependsOn": "npm: install"
     },
     {
       "label": "make:watch/test",
@@ -73,7 +76,9 @@
       "args": [
         "watch/test"
       ],
-      "problemMatcher": [],
+      "problemMatcher": [
+        "$tsc"
+      ],
       "group": "test",
       "isBackground": true,
       "runOptions": {
@@ -85,6 +90,24 @@
         "showReuseMessage": false,
         "clear": true
       }
+    },
+    {
+      "label": "make:lint",
+      "detail": "Lint the project",
+      "type": "process",
+      "command": "make",
+      "args": [
+        "lint"
+      ],
+      "group": "test",
+      "problemMatcher": [
+        "$eslint-stylish"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "clear": true,
+        "revealProblems": "onProblem"
+      }
     }
-  ]
+  ],
 }
