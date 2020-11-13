@@ -1,3 +1,10 @@
+# [2.0.0-alpha.3](https://github.com/strvcom/heimdall/compare/2.0.0-alpha.2...2.0.0-alpha.3) (2020-11-13)
+
+
+### Features
+
+* add option to exit the process after execute() resolves ([979a906](https://github.com/strvcom/heimdall/commit/979a90661f06bf6ca788cd092418e7027311fe0f))
+
 # [2.0.0-alpha.2](https://github.com/strvcom/heimdall/compare/2.0.0-alpha.1...2.0.0-alpha.2) (2020-05-05)
 
 
