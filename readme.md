@@ -86,4 +86,4 @@ See the [LICENSE](LICENSE) file for information.
 
 [strv-home]: https://www.strv.com
 [ci-badge]: https://github.com/strvcom/heimdall/workflows/Continuous%20Integration/badge.svg
-[ci-url]: https://travis-ci.com/strvcom/heimdall
+[ci-url]: https://github.com/strvcom/heimdall/actions?query=workflow%3A%22Continuous+Integration%22
