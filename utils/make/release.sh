@@ -14,7 +14,8 @@ printf "\n=====>\tMerging %s...\n" "${head}"
 
 # In case the release branch existed locally, merge its remote so that when we merge current HEAD
 # we merge it into the current version of the release branch.
-git merge origin/"${branch}"
+# Don't bail if the origin branch does not exist.
+git merge origin/"${branch}" || true
 git merge --message "chore: release" "${head}"
 
 printf "\n=====>\tPushing...\n"
