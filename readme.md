@@ -69,6 +69,14 @@ heimdall({
   logError(err) {
     pino.error({ err }, 'heimdall received error')
   }
+
+  /**
+   * Set this to true to let Heimdall call the exit handler as soon as the execute handler finishes
+   *
+   * This is ideal for one-off scripts, commands or other utilities where you want to do a task and
+   * then let the process exit gracefully.
+   */
+  exitAfterExecute?: false
 })
 ```
 
