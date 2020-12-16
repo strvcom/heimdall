@@ -1,15 +1,16 @@
 ---
-name: Continuous Integration
+name: Continuous Integration v2
 
 on:
   push:
+  pull_request:
 
 jobs:
-  verify:
+  dependencies:
     strategy:
       matrix:
         os:
-          - ubuntu-18.04
+          - ubuntu-20.04
           - macos-10.15
           - windows-2019
         node:
@@ -24,21 +25,64 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0
+          fetch-depth: 1
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
 
       - run: make install
+      - run: tar -acf node_modules.tgz node_modules
+      - uses: actions/upload-artifact@v2
+        with:
+          name: node-modules-${{ matrix.os }}-node-v${{ matrix.node }}-${{ github.sha }}
+          path: node_modules.tgz
+          retention-days: 1
+
+  lint:
+    needs: dependencies
+    strategy:
+      fail-fast: true
+      matrix:
+        os:
+          - ubuntu-20.04
+          - macos-10.15
+          - windows-2019
+        node:
+          - 14
+
+    runs-on: ${{ matrix.os }}
+    env:
+      CI: 'true'
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - uses: actions/download-artifact@v2
+        with:
+          name: node-modules-${{ matrix.os }}-node-v${{ matrix.node }}-${{ github.sha }}
+      - run: tar -xf node_modules.tgz node_modules
+      - run: touch node_modules
+
       - run: make compile
+      - run: make lint
 
-      - name: ESLint
-        run: make lint
-      - name: Tests
-        run: make test
-
-  coverage:
-    runs-on: ubuntu-18.04
+  test:
+    needs: dependencies
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-20.04
+          - macos-10.15
+          - windows-2019
+        node:
+          - 12
+          - 14
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 10
     env:
       CI: 'true'
@@ -46,18 +90,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0
+          fetch-depth: 1
       - uses: actions/setup-node@v1
         with:
-          node-version: 14
-
-      - run: make install
-      - run: make compile
-      - run: make coverage
-
-      - uses: devmasx/coverage-check-action@v1.1.0
+          node-version: ${{ matrix.node }}
+      - uses: actions/download-artifact@v2
         with:
-          type: lcov
-          result_path: coverage/lcov.info
-          min_coverage: 90
-          token: ${{ secrets.GITHUB_TOKEN }}
+          name: node-modules-${{ matrix.os }}-node-v${{ matrix.node }}-${{ github.sha }}
+      - run: tar -xf node_modules.tgz node_modules
+      - run: touch node_modules
+
+      - run: make compile
+      - run: make test
