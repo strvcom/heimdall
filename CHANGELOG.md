@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/strvcom/heimdall/compare/2.0.0...2.0.1) (2021-01-05)
+
+
+### Bug Fixes
+
+* support TypeScript's isolated modules ([801e009](https://github.com/strvcom/heimdall/commit/801e0090896d2f64682f93a7d575f3e1ef231ff3))
+
 # [2.0.0](https://github.com/strvcom/heimdall/compare/1.1.3...2.0.0) (2020-11-30)
 
 
