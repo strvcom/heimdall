@@ -82,7 +82,10 @@ function cleanup(handler: (signal: SignalOrExitCode) => Promise<void>): void {
   process.removeListener('beforeExit', handler)
 }
 
+export type {
+  Delegate,
+}
+
 export {
   heimdall,
-  Delegate,
 }

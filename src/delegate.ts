@@ -49,6 +49,6 @@ interface Delegate<Runtime> {
   logError?(error: Error): void
 }
 
-export {
+export type {
   Delegate,
 }
