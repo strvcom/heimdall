@@ -17,5 +17,13 @@
     "noImplicitThis": true,
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true
+  },
+  "typedocOptions": {
+    "entryPoints": [
+      "src/index.ts"
+    ],
+    "out": "docs",
+    "includeVersion": true,
+    "readme": "none"
   }
 }
