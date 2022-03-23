@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/strvcom/heimdall/compare/2.0.1...2.1.0) (2022-03-23)
+
+
+### Features
+
+* add support of Node v16, v17 ([c060ca9](https://github.com/strvcom/heimdall/commit/c060ca9fd3287bf3713b47cbce23bfca52566d6c))
+
 ## [2.0.1](https://github.com/strvcom/heimdall/compare/2.0.0...2.0.1) (2021-01-05)
 
 
