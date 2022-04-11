@@ -7,8 +7,12 @@ const lbstyle = os.platform() === 'win32' ? 'windows' : 'unix'
 module.exports = {
   reportUnusedDisableDirectives: true,
 
+  parserOptions: {
+    ecmaVersion: 2022,
+  },
+
   extends: [
-    '@strv/node/v12',
+    '@strv/node/v16',
     '@strv/node/optional',
     '@strv/node/style',
   ],
@@ -39,7 +43,7 @@ module.exports = {
     ],
 
     extends: [
-      '@strv/node/v12',
+      '@strv/node/v16',
       '@strv/node/optional',
       '@strv/eslint-config-typescript',
       '@strv/eslint-config-typescript/style',
@@ -47,6 +51,7 @@ module.exports = {
     ],
 
     parserOptions: {
+      ecmaVersion: 2022,
       project: 'tsconfig.json',
     },
 

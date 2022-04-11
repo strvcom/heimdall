@@ -27,12 +27,12 @@ async function heimdall<Runtime>(delegate: Delegate<Runtime>): Promise<void> {
           delegate.didReceiveForcequit()
         }
 
-        return void fatal(delegate, new Error('Forced quit'))
+        return fatal(delegate, new Error('Forced quit'))
       }
 
       await delegate.exit({ runtime })
     } catch (err) {
-      return void fatal(delegate, err)
+      return fatal(delegate, err)
     } finally {
       cleanup(onsignal)
     }
@@ -47,7 +47,7 @@ async function heimdall<Runtime>(delegate: Delegate<Runtime>): Promise<void> {
     runtime = await delegate.execute()
   } catch (err) {
     cleanup(onsignal)
-    return void fatal(delegate, err)
+    return fatal(delegate, err)
   }
 
   if (delegate.exitAfterExecute) {
@@ -72,7 +72,7 @@ function fatal(delegate: Delegate<unknown>, err: unknown): void {
 
   // Intentionally let the current event loop finish, then terminate the process
   // eslint-disable-next-line node/no-process-exit
-  return void process.nextTick(() => void process.exit(1))
+  return process.nextTick(() => void process.exit(1))
 }
 
 function cleanup(handler: (signal: SignalOrExitCode) => Promise<void>): void {

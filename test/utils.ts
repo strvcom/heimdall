@@ -80,9 +80,19 @@ async function nextloop(): Promise<void> {
   await new Promise(resolve => setImmediate(resolve))
 }
 
+/**
+ * A function that does nothing and returns nothing
+ *
+ * @private
+ */
+function noop(): void {
+  // noop
+}
+
 export {
   mkdelegate,
   lastsignalhandler,
   mklistenercheck,
   nextloop,
+  noop,
 }

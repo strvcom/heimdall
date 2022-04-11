@@ -2,7 +2,7 @@ import { describe, it, before, after, beforeEach } from 'mocha'
 import * as expect from 'expect'
 import * as sinon from 'sinon'
 import { heimdall } from '..'
-import { mkdelegate, lastsignalhandler, nextloop } from './utils'
+import { mkdelegate, lastsignalhandler, nextloop, noop } from './utils'
 
 type SignalHandlerStub = sinon.SinonStub<[string, (event: string) => void], void>
 type ProcessExitStub = sinon.SinonStub<[number?], void>
@@ -65,7 +65,7 @@ describe('Heimdall', () => {
     const signals: NodeJS.Signals[] = ['SIGINT', 'SIGTERM']
 
     // eslint-disable-next-line mocha/no-setup-in-describe
-    void signals.forEach(signal => {
+    signals.forEach(signal => {
       describe(signal, () => {
         it(`${signal} triggers delegate.exit()`, async () => {
           const delegate = mkdelegate()
@@ -79,16 +79,16 @@ describe('Heimdall', () => {
           const delegate = mkdelegate()
           // A promise that never resolves, to prevent the .exit() function from letting Heimdall
           // clean its listeners up
-          delegate.exit.returns(new Promise(() => {}))
+          delegate.exit.returns(new Promise(noop))
           await heimdall(delegate)
 
           // Shut up, ESLint, I really want this to throw asynchronously into my face if it blows 🔥
-          lastsignalhandler(stubs.process.on, signal).catch(err => {
+          lastsignalhandler(stubs.process.on, signal).catch((err: Error) => {
             throw err
           })
           // This signal handler is expected to throw a "force quit" error but we do not want that
           // to happen here
-          lastsignalhandler(stubs.process.on, signal).catch(() => {})
+          lastsignalhandler(stubs.process.on, signal).catch(noop)
 
           // .exit() should be called only once
           expect(delegate.exit.callCount).toBe(1)
@@ -101,7 +101,7 @@ describe('Heimdall', () => {
 
           await heimdall(delegate)
           // Shut up, ESLint, I really want this to throw asynchronously into my face if it blows 🔥
-          lastsignalhandler(stubs.process.on, signal).catch(err => {
+          lastsignalhandler(stubs.process.on, signal).catch((err: Error) => {
             throw err
           })
 
@@ -175,11 +175,11 @@ describe('Heimdall', () => {
   describe('forced shutdown', () => {
     it('occurs in the next event loop', async () => {
       const delegate = mkdelegate()
-      delegate.exit.returns(new Promise(() => {}))
+      delegate.exit.returns(new Promise(noop))
 
       await heimdall(delegate)
-      lastsignalhandler(stubs.process.on, 'SIGINT').catch(() => {})
-      lastsignalhandler(stubs.process.on, 'SIGINT').catch(() => {})
+      lastsignalhandler(stubs.process.on, 'SIGINT').catch(noop)
+      lastsignalhandler(stubs.process.on, 'SIGINT').catch(noop)
 
       expect(delegate.didReceiveForcequit?.callCount).toBe(1)
       expect(stubs.process.exit.callCount).toBe(0)
@@ -263,11 +263,11 @@ describe('Heimdall', () => {
     it('is used when a second signal is received', async () => {
       const delegate = mkdelegate()
       delegate.logError = sinon.stub()
-      delegate.exit.returns(new Promise(() => {}))
+      delegate.exit.returns(new Promise(noop))
 
       await heimdall(delegate)
-      lastsignalhandler(stubs.process.on, 'SIGINT').catch(() => {})
-      lastsignalhandler(stubs.process.on, 'SIGINT').catch(() => {})
+      lastsignalhandler(stubs.process.on, 'SIGINT').catch(noop)
+      lastsignalhandler(stubs.process.on, 'SIGINT').catch(noop)
       await nextloop()
 
       expect(stubs.console.error.callCount).toBe(0)
