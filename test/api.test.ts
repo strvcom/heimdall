@@ -1,5 +1,5 @@
 import { describe, it, before, after, beforeEach } from 'mocha'
-import * as expect from 'expect'
+import { expect } from 'expect'
 import * as sinon from 'sinon'
 import { heimdall } from '..'
 import { mkdelegate, lastsignalhandler, nextloop, noop } from './utils'

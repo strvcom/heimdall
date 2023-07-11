@@ -1,4 +1,4 @@
-import type { Delegate } from './delegate'
+import { type Delegate } from './delegate'
 
 type SignalOrExitCode = NodeJS.Signals | number
 
@@ -85,7 +85,6 @@ function cleanup(handler: (signal: SignalOrExitCode) => Promise<void>): void {
 export type {
   Delegate,
 }
-
 export {
   heimdall,
 }

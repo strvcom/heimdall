@@ -1,7 +1,7 @@
-import type { EventEmitter } from 'events'
+import { type EventEmitter } from 'events'
 import * as sinon from 'sinon'
-import * as expect from 'expect'
-import type { Delegate } from '..'
+import { expect } from 'expect'
+import { type Delegate } from '..'
 
 interface FakeDelegate<Runtime> extends Delegate<Runtime> {
   execute: sinon.SinonStub<[], Promise<Runtime>>

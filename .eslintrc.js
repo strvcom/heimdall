@@ -4,15 +4,12 @@ const os = require('os')
 
 const lbstyle = os.platform() === 'win32' ? 'windows' : 'unix'
 
+/** @type {import("eslint").Linter.Config} */
 module.exports = {
   reportUnusedDisableDirectives: true,
 
-  parserOptions: {
-    ecmaVersion: 2022,
-  },
-
   extends: [
-    '@strv/node/v16',
+    '@strv/node/v20',
     '@strv/node/optional',
     '@strv/node/style',
   ],
@@ -37,24 +34,30 @@ module.exports = {
 
   overrides: [{
     files: [
-      'src/**/*.ts',
-      'test/**/*.ts',
-      'test/**/*.test.ts',
+      '**/*.ts',
     ],
 
     extends: [
-      '@strv/node/v16',
+      '@strv/node/v20',
       '@strv/node/optional',
-      '@strv/eslint-config-typescript',
-      '@strv/eslint-config-typescript/style',
-      '@strv/mocha',
+      '@strv/typescript',
+      '@strv/typescript/style',
     ],
 
     parserOptions: {
-      ecmaVersion: 2022,
       project: 'tsconfig.json',
     },
 
+    rules: {
+      'linebreak-style': ['error', lbstyle],
+    },
+  }, {
+    files: [
+      '**/*.test.ts',
+    ],
+    extends: [
+      '@strv/mocha',
+    ],
     env: {
       // Disable Mocha globals which are enabled in @strv/mocha. We will import the necessary
       // functions directly from 'mocha' package in this project.
@@ -62,10 +65,6 @@ module.exports = {
       // files. It is currently not possible to disable these globals for source files but have them
       // available in test files - they are either fully available or not available at all.
       mocha: false,
-    },
-
-    rules: {
-      'linebreak-style': ['error', lbstyle],
     },
   }],
 }

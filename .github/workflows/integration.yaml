@@ -10,14 +10,12 @@ jobs:
     strategy:
       matrix:
         os:
-          - ubuntu-20.04
-          - macos-11
+          - ubuntu-22.04
+          - macos-13
           - windows-2022
         node:
-          - 12
-          - 14
-          - 16
           - 18
+          - 20
 
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
@@ -25,7 +23,7 @@ jobs:
       CI: 'true'
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - uses: actions/setup-node@v3
@@ -42,18 +40,18 @@ jobs:
         run: make test
 
   coverage:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     timeout-minutes: 10
     env:
       CI: 'true'
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
 
       - run: make install
       - run: make compile
