@@ -20,6 +20,10 @@
   "files.trimTrailingWhitespace": true,
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "eslint.lintTask.options": "--cache --ext js,ts .",
+  "eslint.lintTask.options": "--cache --config eslint.config.mjs .",
+  "eslint.experimental.useFlatConfig": true,
+  "eslint.options": {
+    "overrideConfigFile": "eslint.config.mjs",
+  },
   "mochaExplorer.files": "{src,test}/**/*.test.js"
 }

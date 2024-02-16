@@ -27,12 +27,14 @@ async function heimdall<Runtime>(delegate: Delegate<Runtime>): Promise<void> {
           delegate.didReceiveForcequit()
         }
 
-        return fatal(delegate, new Error('Forced quit'))
+        fatal(delegate, new Error('Forced quit'))
+        return
       }
 
       await delegate.exit({ runtime })
     } catch (err) {
-      return fatal(delegate, err)
+      fatal(delegate, err)
+      return
     } finally {
       cleanup(onsignal)
     }
@@ -47,7 +49,8 @@ async function heimdall<Runtime>(delegate: Delegate<Runtime>): Promise<void> {
     runtime = await delegate.execute()
   } catch (err) {
     cleanup(onsignal)
-    return fatal(delegate, err)
+    fatal(delegate, err)
+    return
   }
 
   if (delegate.exitAfterExecute) {

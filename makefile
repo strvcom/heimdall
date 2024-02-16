@@ -2,6 +2,7 @@
 SHELL := sh
 export PATH := node_modules/.bin/:$(PATH)
 export NODE_OPTIONS := --trace-deprecation
+export ESLINT_USE_FLAT_CONFIG := true
 
 # On CI servers, use the `npm ci` installer to avoid introducing changes to the package-lock.json
 # On developer machines, prefer the generally more flexible `npm install`. 💪
@@ -52,7 +53,7 @@ coverage: coverage/lcov.info
 install: node_modules $(GITFILES)
 
 lint: force install
-	eslint --cache --ext js,ts $(ESLINT_FLAGS) .
+	eslint --cache --config eslint.config.mjs $(ESLINT_FLAGS) .
 	remark --quiet .
 
 test: force compile
