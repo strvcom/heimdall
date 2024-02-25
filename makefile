@@ -53,7 +53,7 @@ coverage: coverage/lcov.info
 install: node_modules $(GITFILES)
 
 lint: force install
-	eslint --cache --config eslint.config.mjs $(ESLINT_FLAGS) .
+	eslint --cache $(ESLINT_FLAGS) .
 	remark --quiet .
 
 test: force compile
