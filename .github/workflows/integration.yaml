@@ -16,6 +16,8 @@ jobs:
         node:
           - 18
           - 20
+          - 22
+          - 23
 
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
