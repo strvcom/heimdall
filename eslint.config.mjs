@@ -1,4 +1,3 @@
-import * as os from 'os'
 import nodev20 from '@strv/eslint-config-node/v20'
 import nodeopt from '@strv/eslint-config-node/optional'
 import nodestyle from '@strv/eslint-config-node/style'
@@ -7,7 +6,6 @@ import tsoptional from '@strv/eslint-config-typescript/optional'
 import tsstyle from '@strv/eslint-config-typescript/style'
 import mocha from '@strv/eslint-config-mocha'
 
-const lbstyle = os.platform() === 'win32' ? 'windows' : 'unix'
 const globs = {
   mjs: '**/*.mjs',
   ts: '**/*.ts',
@@ -34,12 +32,6 @@ const config = [
   { files: [globs.ts],
     languageOptions: {
       parserOptions: { project: './tsconfig.json' },
-    },
-    rules: {
-      // This repository is configured so that upon checkout, git should convert line endings to platform-specific
-      // defaults and convert them back to LF when checking in. As such, we must enforce CRLF endings on Windows,
-      // otherwise the lint task would fail on Windows systems.
-      'linebreak-style': ['error', lbstyle],
     } },
 ]
 
