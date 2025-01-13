@@ -14,7 +14,6 @@ jobs:
           - macos-15
           - windows-2022
         node:
-          - 18
           - 20
           - 22
           - 23
