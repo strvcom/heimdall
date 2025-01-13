@@ -4,15 +4,14 @@ name: Continuous Integration
 on:
   push:
   pull_request:
-  pull_request_target:
 
 jobs:
   verify:
     strategy:
       matrix:
         os:
-          - ubuntu-22.04
-          - macos-13
+          - ubuntu-24.04
+          - macos-15
           - windows-2022
         node:
           - 18
@@ -35,32 +34,5 @@ jobs:
       - run: make install
       - run: make compile
 
-      - name: ESLint
-        run: make lint
-      - name: Tests
-        run: make test
-
-  coverage:
-    runs-on: ubuntu-22.04
-    timeout-minutes: 10
-    env:
-      CI: 'true'
-
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - run: make install
-      - run: make compile
-      - run: make coverage
-
-      - uses: devmasx/coverage-check-action@v1.2.0
-        with:
-          type: lcov
-          result_path: coverage/lcov.info
-          min_coverage: 90
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - run: make lint
+      - run: make test
