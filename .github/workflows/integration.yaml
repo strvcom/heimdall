@@ -24,10 +24,10 @@ jobs:
       CI: 'true'
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
           cache: npm
@@ -47,18 +47,18 @@ jobs:
       CI: 'true'
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - run: make install
       - run: make compile
       - run: make coverage
 
-      - uses: devmasx/coverage-check-action@v1.1.0
+      - uses: devmasx/coverage-check-action@v1.2.0
         with:
           type: lcov
           result_path: coverage/lcov.info
