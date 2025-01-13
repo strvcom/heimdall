@@ -1,3 +1,23 @@
+# [3.0.0](https://github.com/strvcom/heimdall/compare/2.2.0...3.0.0) (2025-01-13)
+
+
+### chore
+
+* upgrade deps & ESLint, drop older Node.js support ([5c3bfe0](https://github.com/strvcom/heimdall/commit/5c3bfe0e0400fa5a3ea659404b440b5ef2d7c044))
+
+
+### Features
+
+* add support of Node ^20, ^22, ^23 ([58537d3](https://github.com/strvcom/heimdall/commit/58537d3f89a8b97d005e4dacf569c1a1b85868c7))
+* drop support for Node.js v18 ([dc3ec65](https://github.com/strvcom/heimdall/commit/dc3ec653844363980fd14bfe2f828d5ca2fd9919))
+* upgrade deps, move to ESLint flat config 🚀 ([b6560e6](https://github.com/strvcom/heimdall/commit/b6560e6dd7e4a6580da328bbbc2af322cfe47a37))
+
+
+### BREAKING CHANGES
+
+* Node.js v18 is no longer officially supported.
+* Minimum supported Node.js version is now v18 and v20.
+
 # [2.2.0](https://github.com/strvcom/heimdall/compare/2.1.0...2.2.0) (2022-04-25)
 
 
